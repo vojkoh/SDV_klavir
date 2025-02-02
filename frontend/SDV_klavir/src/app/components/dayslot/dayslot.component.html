@@ -1,0 +1,6 @@
+<div>
+    <h2>{{day.dayOfTheWeek}}</h2>
+    <div *ngFor="let timeslot of day.timeslots">
+        <app-timeslot-button [timeslot]="timeslot"></app-timeslot-button>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 export enum DayOfTheWeek {
-    Ponedeljek,
-    Torek,
-    Sreda,
-    Četrtek,
-    Petek,
-    Sobota,
-    Nedelja
+    Ponedeljek = "Ponedeljek",
+    Torek = "Torek",
+    Sreda = "Sreda",
+    Cetrtek = "Četrtek",
+    Petek = "Petek",
+    Sobota = "Sobota",
+    Nedelja = "Nedelja"
 }

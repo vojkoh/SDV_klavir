@@ -1,7 +1,5 @@
 <div>
-    <div *ngFor="let timeslot of timeslots">
-        <app-timeslot-button [timeslot]="timeslot" >
-
-        </app-timeslot-button>
+    <div *ngFor="let day of days">
+        <app-dayslot [day]="day"></app-dayslot>
     </div>
 </div>
