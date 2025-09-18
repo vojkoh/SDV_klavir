@@ -5,9 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "tsc --build",
-    "postbuild": "copyfiles ../dapp/** ./dist/dapp/ && copyfiles ./src/dbData/** ./dist/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build"
   },
   "repository": {
     "type": "git",
@@ -17,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.0.0",

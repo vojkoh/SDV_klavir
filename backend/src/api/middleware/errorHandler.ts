@@ -15,7 +15,7 @@ const errorHandler = (err: Error, req: Request, res: Response, _next: NextFuncti
     status: 'failed',
     code: statusCode,
     error: {
-      message: err.message,
+      message: err.message, // ta err je tisti, ki smo ga mi vrgli (message smo napisali mi!)
     },
   });
 };
