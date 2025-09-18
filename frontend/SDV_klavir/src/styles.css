@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary: #681452;
+    --secondary: #EB8126CC;
+    --primary-variant: #AB5A74CC;
+    --secondary-variant: #E9B661CC;
+    --primary-light: #E27E7ECC;
+    --secondary-light: #EA9E79CC;
+
+    --primary-variant-transparent: #AB5A7477;
+    --primary-light-transparent: #E27E7E77;
+
+    --text: #eeeeee;
+    --text-variant: #470937;
+}
+
+body {
+    /* background-color: var(--primary); */
+    background-image: url('../public/piano.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--text-variant);
+    font-family: 'Times', serif;
+}

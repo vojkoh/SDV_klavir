@@ -1,1 +1,20 @@
-<button>{{timeslot.reservedBy || "prosto"}}</button>
+<button
+  class="timeslot"
+  [ngClass]="{
+    'temporary': timeslot.reservationType === ReservationType.Temporary,
+    'permanent': timeslot.reservationType === ReservationType.Permanent,
+    'unreserved': timeslot.reservationType === ReservationType.Unreserved,
+    'selected': isSelected,
+  }"
+  (click)="select()"
+>
+  <div class="timeslot-content">
+    <div class="timeslot-time">
+        {{ timeslot.start }}
+    </div>
+    <div class="timeslot-reserved-by">
+        {{ timeslot.reservedBy || '' }}
+    </div>
+
+  </div>
+</button>

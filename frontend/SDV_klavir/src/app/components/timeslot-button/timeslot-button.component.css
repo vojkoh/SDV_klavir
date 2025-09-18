@@ -1,0 +1,48 @@
+.timeslot {
+    width: 100%;
+    height: 4em;
+    border: 1px solid var(--primary-variant);
+    font-weight: bolder;
+    font-family: 'Times', serif;
+    color: var(--text);
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.timeslot-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.timeslot:hover {
+    box-shadow: 3px 3px rgba(0,0,0,0.2);
+}
+
+.timeslot.selected {
+    border: 3px solid var(--primary);
+}
+
+.timeslot-time {
+    width: 5em;
+    flex-shrink: 0;
+    border-right: var(--text-variant) 1px solid;
+}
+
+.timeslot-reserved-by {
+    flex-grow: 5;
+}
+
+.temporary {
+    background-color: var(--secondary-variant);
+}
+
+.permanent {
+    background-color: var(--secondary);
+}
+
+.unreserved {
+    background-color: var(--primary-light);
+}

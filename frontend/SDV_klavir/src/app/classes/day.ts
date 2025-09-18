@@ -1,11 +1,13 @@
-import { DayOfTheWeek } from "./day-of-the-week";
 import { Timeslot } from "./timeslot";
 
 export interface Day {
     id: string;
     date: Date;	
-    dayOfTheWeek: DayOfTheWeek;
+    dayOfTheWeek: number;
     timeslots: Timeslot[];
-    createdAt: Date;
-    updatedAt: Date;
+}
+
+export interface DayPlaceholder {
+    name: string;
+    dayOfTheWeek: number;
 }

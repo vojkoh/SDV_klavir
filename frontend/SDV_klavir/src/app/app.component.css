@@ -1,8 +1,4 @@
-:root {
-    --primary: #7E5072;
-    --secondary: #EB8126;
-    --primary-variant: #AB5A74;
-    --secondary-variant: #E9B661;
-    --primary-light: #E27E7E;
-    --secondary-light: #EA9E79;
+:host {
+    display: block;
+    text-align: center;
 }

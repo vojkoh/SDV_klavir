@@ -1,0 +1,61 @@
+.timetable-container {
+	/* background-color: var(--primary-variant); */
+	/* background: linear-gradient(135deg, var(--primary-variant) 25%, var(--primary-light) 25%, var(--primary-light) 50%, var(--primary-variant) 50%, var(--primary-variant)  75%, var(--primary-light) 75%, var(--primary-light) 100%); */
+	background: linear-gradient(135deg, var(--primary-variant-transparent), var(--primary-light-transparent));
+	border-radius: 10px;
+	column-gap: 0.5em;
+	padding: 20px;
+	display: grid;
+	grid-template-rows: 20px 1fr;
+}
+
+.day-choice {
+	margin: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.day-button {
+	border-radius: 100%;
+	padding: 1vw;
+	font-weight: 600;
+	align-content: center;
+	border: none;
+	width: 2em;
+	height: 2em;
+	cursor: pointer;
+}
+
+.day-button:hover {
+	background-color: var(--primary-variant);
+}
+
+.day-button.active {
+	background-color: var(--primary-variant);
+}
+
+.dayslots-container {
+	padding: 0px 10px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+	.timetable-container {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: auto;
+		margin-left: 5vw;
+		margin-right: 5vw;
+	}
+}
+
+@media screen and (min-width: 1080px) {
+	.timetable-container {
+		grid-template-columns: repeat(7, 1fr);
+		grid-template-rows: 1fr;
+		margin-left: 5vw;
+		margin-right: 5vw;
+	}
+}

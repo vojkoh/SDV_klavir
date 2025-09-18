@@ -1,5 +1,14 @@
-<div>
-    <div *ngFor="let day of days">
-        <app-dayslot [day]="day"></app-dayslot>
+<div class="timetable-container">
+    <div class="day-choice">
+        <div *ngFor="let day of days; let i = index">
+            <div class="day-button" [ngClass]="{'active': i === currentDay}" (click)="selectDay(i)">
+                <a>
+                    {{day.dayOfTheWeek.substring(0, 2).toUpperCase()}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="dayslots-container">
+        <app-dayslot [day]="days[currentDay]"></app-dayslot>
     </div>
 </div>

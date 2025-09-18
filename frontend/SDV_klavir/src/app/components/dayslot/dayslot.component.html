@@ -1,6 +1,14 @@
-<div>
+<div class="dayslot">
     <h2>{{day.dayOfTheWeek}}</h2>
     <div *ngFor="let timeslot of day.timeslots">
-        <app-timeslot-button [timeslot]="timeslot"></app-timeslot-button>
+        <app-timeslot-button (unselectTimeslotEvent)="unselectTimeslot($event)" (selectTimeslotEvent)="selectTimeslot($event)" [timeslot]="timeslot"></app-timeslot-button>
+    </div>
+
+    <div class="button-container">
+        <button *ngIf="selectedTimeslotTypes() === ReservationType.Unreserved" class="button" (click)="reserveTimeslots()">Rezerviraj termine</button>
+        <button *ngIf="selectedTimeslotTypes() === ReservationType.Temporary" class="button" (click)="unreserveTimeslots()">Sprosti termine</button>
+        <button *ngIf="selectedTimeslotTypes() === ReservationType.Permanent" class="button" (click)="unreserveTimeslots()">Sprosti termine</button>
+        <a *ngIf="selectedTimeslotTypes() === null && selectedTimeslots.length !== 0" >Izberite termine enakega tipa</a>
+        <a *ngIf="selectedTimeslots.length === 0" >Izberite posamezne termine</a>
     </div>
 </div>

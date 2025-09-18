@@ -1,10 +1,8 @@
 import { ReservationType } from './reservation-type';
 
 export interface Timeslot {
-    id: string;
+    timeslotNo: number;
     start: string;
     reservationType: ReservationType;
     reservedBy: string | undefined;
-    createdAt: string;
-    updatedAt: string;
 }

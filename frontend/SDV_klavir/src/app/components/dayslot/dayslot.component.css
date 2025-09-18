@@ -1,0 +1,24 @@
+.dayslot {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.button {
+    width: 40%;
+    height: 4em;
+    color: var(--text-variant);
+    border: 1px solid var(--primary-variant);
+    background-color: var(--primary-variant);
+    font-weight: bolder;
+    font-family: 'Times', serif;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}

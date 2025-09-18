@@ -1,3 +1,11 @@
+h1 {
+    color: var(--text);
+}
+
+.title-container {
+    margin-top: 10vh;
+}
+
 .spacing {
-    height: 40vh;
+    height: 6vh;
 }
