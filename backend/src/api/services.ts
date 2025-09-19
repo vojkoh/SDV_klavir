@@ -20,7 +20,7 @@ const createFreshDay = (dayOfTheWeek: number): Day => {
       {
         // TO-DO: add start time!
         timeslotNo: i,
-        start: 'placeholder',
+        start: `${7 + i}:00`,
         reservationType: ReservationType.Unreserved,
         reservedBy: 'nobody'
       } as Timeslot

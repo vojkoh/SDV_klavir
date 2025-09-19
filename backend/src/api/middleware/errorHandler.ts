@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
-
-import config, { Environment } from '../../config';
 import { Error } from 'mongoose';
 
 const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
