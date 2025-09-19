@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Day, days2Names } from '../../classes/day';
 import { TimeslotButtonComponent } from '../timeslot-button/timeslot-button.component';
 import { CommonModule } from '@angular/common';
 import { Timeslot } from '../../classes/timeslot';
 import { ReservationType } from '../../classes/reservation-type';
+import { DaysService } from '../../services/days.service';
 
 @Component({
   selector: 'app-dayslot',
@@ -12,11 +13,20 @@ import { ReservationType } from '../../classes/reservation-type';
   templateUrl: './dayslot.component.html',
   styleUrl: './dayslot.component.css'
 })
-export class DayslotComponent {
+export class DayslotComponent implements OnInit {
+  constructor(private readonly dayService: DaysService) {}
   @Input() dayNumber!: number;
 
   protected days2Names = days2Names;
   protected selectedTimeslots: Timeslot[] = [];
+
+  ngOnInit(): void {
+    this.getAllTimeslots();
+  }
+
+  ngOnChanges(): void {
+    this.getAllTimeslots();
+  }
 
   protected day: Day = {
     _id: "68cb9ba577307b421d3ce495",
@@ -124,6 +134,11 @@ export class DayslotComponent {
     ]
   }
 
+  protected getAllTimeslots(): void {
+    this.dayService.getDay(this.dayNumber).subscribe(day => {
+      this.day = day;
+    });
+  }
 
   protected reserveTimeslots(): void {
     console.log("Timeslots reserved");

@@ -12,9 +12,10 @@ import { Environment } from './config';
 
 const app = express();
 
-if (config.env === Environment.Production) {
-  app.use(cors());
+app.use(cors());
 
+if (config.env === Environment.Production) {
+  app.use(cors({ origin: config.frontendURL }));
   app.use(
     helmet({
       crossOriginResourcePolicy: false,

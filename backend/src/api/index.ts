@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.send('Hello, World!');
 });
 
-router.get('/day/:dayId', async (req, res) => {
+router.get('/days/:dayId', async (req, res) => {
     const day = await Services.getDay(parseInt(req.params.dayId, 10));
     if (!day) {
         res.status(404);
