@@ -1,14 +1,16 @@
 <div class="timetable-container">
     <div class="day-choice">
-        <div *ngFor="let day of days; let i = index">
-            <div class="day-button" [ngClass]="{'active': i === currentDay}" (click)="selectDay(i)">
+        <div *ngFor="let day of daysForButtons; let i = index">
+            <div class="day-button" [ngClass]="{'active': i === currentIndex}" (click)="selectDay(i)">
                 <a>
-                    {{day.dayOfTheWeek.substring(0, 2).toUpperCase()}}
+                    {{day.name.substring(0, 2).toUpperCase()}}
                 </a>
             </div>
         </div>
     </div>
     <div class="dayslots-container">
-        <app-dayslot [day]="days[currentDay]"></app-dayslot>
+        <app-dayslot [dayNumber]="currentDay"></app-dayslot>
     </div>
 </div>
+
+<!-- TO-DO: dodaj legendo barv posameznih rezervacijskih tipov -->

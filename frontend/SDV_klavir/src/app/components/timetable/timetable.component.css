@@ -13,7 +13,7 @@
 	margin: 20px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	margin-bottom: 10px;
 }
@@ -43,19 +43,25 @@
 
 /* Media Queries */
 @media screen and (min-width: 768px) {
+	.day-choice {
+		flex-direction: column;
+		margin-bottom: 0px;
+		margin-right: 10px;
+	}
+
 	.timetable-container {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr 2fr;
 		grid-template-rows: auto;
 		margin-left: 5vw;
 		margin-right: 5vw;
 	}
 }
 
-@media screen and (min-width: 1080px) {
+/* @media screen and (min-width: 1080px) {
 	.timetable-container {
 		grid-template-columns: repeat(7, 1fr);
 		grid-template-rows: 1fr;
 		margin-left: 5vw;
 		margin-right: 5vw;
 	}
-}
+} */

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReservationType } from '../../classes/reservation-type';
-import { Day } from '../../classes/day';
+import { Day, days2Names } from '../../classes/day';
 import { Timeslot } from '../../classes/timeslot';
 import { DayslotComponent } from "../dayslot/dayslot.component";
 import { getDay } from 'date-fns';
@@ -13,25 +13,28 @@ import { getDay } from 'date-fns';
   templateUrl: './timetable.component.html',
   styleUrls: ['./timetable.component.css']
 })
+
 export class TimetableComponent implements OnInit {
   
-
+  protected daysForButtons = days2Names;
   protected currentDay: number = 1;
+  protected currentIndex: number = 0;
 
   protected selectDay(day: number): void {
-    this.currentDay = day;
+    this.currentDay = (day + 1) % 7; // for API fetching
+    this.currentIndex = day;
   }
 
   ngOnInit(): void {
-    this.currentDay = (getDay(new Date()) + 6) % 7;
+    this.currentDay = getDay(new Date()) // for API fetching;
+    this.currentIndex = (getDay(new Date()) + 6) % 7; // for button highlighting
   }
-
-  protected days = [1, 2, 3, 4, 5, 6, 7];
 
   /*
     Sample data for testing purposes
   */
 
+  
   // private users = ["John Doe", "Jane Doe", "Alice", "Bob", "Charlie", "Dave", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack", "Karen", "Leo", "Mona", "Nina"];
   // private reservationTypes = [ReservationType.Permanent, ReservationType.Temporary, ReservationType.Unreserved];
 
