@@ -1,7 +1,7 @@
 <div class="dayslot">
 
 
-    <div #modal class="modal">
+    <div #modal class="modal" (mousedown)="onBackgroundClick($event)">
         <div class="modal-window">
             <div class="modal-content-wrapper">
                 <div class="modal-header">
@@ -23,17 +23,22 @@
                         />
                     </div>
                     
-                    <div>
-                        <button 
-                            [ngClass]="reservationType == ReservationType.Temporary ? 'button' : 'button-invisible'" 
-                            (click)="changeReservationType(ReservationType.Temporary)">
-                            Začasno
-                        </button>
-                        <button 
-                            [ngClass]="reservationType == ReservationType.Permanent ? 'button' : 'button-invisible'"
-                            (click)="changeReservationType(ReservationType.Permanent)">
-                            Stalno
-                        </button>
+                    <div class="modal-buttons">
+                        <div>
+                            <button 
+                                [ngClass]="reservationType == ReservationType.Temporary ? 'button' : 'button-invisible'" 
+                                (click)="changeReservationType(ReservationType.Temporary)">
+                                Začasno
+                            </button>
+                        </div>
+                        <div>
+                            <button 
+                                [ngClass]="reservationType == ReservationType.Permanent ? 'button' : 'button-invisible'"
+                                (click)="changeReservationType(ReservationType.Permanent)">
+                                Stalno
+                            </button>
+                        </div>
+                        
                     </div>
                 </div>
 
