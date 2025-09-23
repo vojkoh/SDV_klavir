@@ -5,10 +5,14 @@ import app from './app';
 import config from './config';
 import { Request, Response, NextFunction } from 'express';
 
+import { initSockets } from './sockets';
+import { Socket } from 'socket.io';
+
 const { port } = config.api;
 
 let mongooseClient: Mongoose | undefined = undefined;
 let server: Server | undefined = undefined;
+let socket: Socket | undefined = undefined;
 
 async function gracefulShutdown(exitCode: number = 0) {
   console.log('Shutting down ...', 'shutdown.start');
@@ -22,6 +26,10 @@ async function gracefulShutdown(exitCode: number = 0) {
     console.log('Disconnecting from mongodb ...', 'shutdown.mongo.disconnect');
     await mongooseClient?.disconnect();
     console.log('Disconnected from mongodb.', 'shutdown.mongo.disconnect.success');
+  }
+
+  if(socket) {
+    // TO-DO: close socket gracefully 
   }
   process.exit(exitCode);
 }
@@ -71,6 +79,8 @@ async function bootstrap() {
   server = app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`, 'bootstrap.server.listening');
   });
+
+  socket = initSockets(server);
 
   console.log(`Bootstrap succeeded.`, 'bootstrap.success');
 }
