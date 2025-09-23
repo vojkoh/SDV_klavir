@@ -1,5 +1,6 @@
 import { registerReservationSockets } from "./reservation";
-// const registerPresenceSockets = require("./presence");
+import { livePresenceSockets } from "./live-presence";
+
 
 import { Server as HttpServer } from "http";
 import { Server as SocketIO } from 'socket.io'
@@ -16,7 +17,7 @@ export function initSockets(server: HttpServer) {
   io.on("connection", (socket) => {
     console.log("User connected", socket.id);
 
-    // registerReservationSockets(io, socket);
-    // registerPresenceSockets(io, socket);
+    registerReservationSockets(io, socket);
+    livePresenceSockets(io, socket);
   });
 }

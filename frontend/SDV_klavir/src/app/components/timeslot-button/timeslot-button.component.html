@@ -5,15 +5,20 @@
     'permanent': timeslot.reservationType === ReservationType.Permanent,
     'unreserved': timeslot.reservationType === ReservationType.Unreserved,
     'selected': isSelected,
+    'live-present': livePresenceNames.length !== 0
   }"
   (click)="select()"
 >
   <div class="timeslot-content">
+    <div *ngIf="livePresenceNames.length !== 0" class="presence-banner">
+      {{livePresenceNames.join(', ')}}
+    </div>
     <div class="timeslot-time">
-        {{ timeslot.start }}
+        {{ timeslot.start }} 
     </div>
     <div class="timeslot-reserved-by">
         {{ timeslot.reservedBy || '' }}
+        
     </div>
 
   </div>

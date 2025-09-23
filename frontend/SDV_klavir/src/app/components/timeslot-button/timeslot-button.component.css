@@ -1,5 +1,6 @@
 .timeslot {
     display:block;
+    position: relative;
     width: 100%;
     height: 4em;
     border: 1px solid var(--primary-variant);
@@ -23,7 +24,10 @@
 }
 
 .timeslot.selected {
-    border: 3px solid var(--primary);
+    color: var(--text-variant)
+    /* border: 3px solid var(--primary); */
+    /* opacity: 1.0;
+    background: repeating-linear-gradient( 45deg, var(--secondary-variant), var(--secondary-variant) 5px, var(--secondary-light) 5px, var(--secondary-light) 25px ); */
 }
 
 .timeslot-time {
@@ -46,4 +50,20 @@
 
 .unreserved {
     background-color: var(--primary-light);
+}
+
+.live-present {
+    border: solid thick darkred;
+}
+
+.presence-banner {
+    font-size: smaller;
+    font-weight: normal;
+    border-radius: 0px 0px 0px 4px;
+    z-index: 1;
+    padding: 0.3em;
+    position: absolute;
+    background-color: darkred;
+    top: 0;
+    right: 0;
 }

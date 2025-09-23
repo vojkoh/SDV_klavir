@@ -56,7 +56,10 @@
             <app-timeslot-button 
                 (unselectTimeslotEvent)="unselectTimeslot($event)" 
                 (selectTimeslotEvent)="selectTimeslot($event)" 
-                [timeslot]="timeslot">
+                [timeslot]="timeslot"
+                [livePresence]="livePresenceMap[timeslot.timeslotNo] || []"
+                [reserver]="reservedBy"
+                [dayNumber]="dayNumber">
             </app-timeslot-button>
 
         </div>
