@@ -1,6 +1,6 @@
 export const environment = {
-  apiUrl: 'http://localhost:8080/v1',
-  socketUrl: 'http://localhost:8080',
+  apiUrl: 'http://zmajkotrek.si/v1',
+  socketUrl: 'http://zmajkotrek.si/socket.io/',
   // TO-DO change for production ->> https://zmajkotrek.si
   production: true,
 };

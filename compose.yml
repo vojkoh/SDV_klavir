@@ -21,8 +21,8 @@ services:
         - JWT_SECRET=secret
         - PORT=3000
         - DATABASE_URL=mongodb://root:nullSkillz42@db:27017
-        - EXTERNAL_URL=http://backend:3000
-        - FRONTEND_URL=http://localhost:8080
+        - EXTERNAL_URL=http://zmajkotrek.si/v1
+        - FRONTEND_URL=http://zmajkotrek.si
         - API_PREFIX=/v1
         - TZ=Europe/Ljubljana
     restart: always
@@ -30,14 +30,18 @@ services:
       - '3000:3000'
     depends_on:
       - db
+
   nginx:
     container_name: sdv-klavir-nginx
+    volumes:
+      - ./zmajkotrek.si:/etc/letsencrypt/live/zmajkotrek.si
     build:
       context: ./frontend/SDV_klavir
       dockerfile: Dockerfile
     restart: always
     ports:
-      - '8080:80'
+      - '80:80'
+      - '443:443'
 
 volumes:
   mongodb_data:
