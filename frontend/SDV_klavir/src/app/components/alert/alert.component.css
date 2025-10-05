@@ -1,0 +1,10 @@
+.alert-box {
+    color: var(--text);
+    z-index: 10;
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    bottom: 0;
+    background-color: var(--primary-variant-solid);
+    box-shadow: 10px;
+}

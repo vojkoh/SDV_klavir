@@ -1,5 +1,6 @@
 export const environment = {
-  apiUrl: 'https://nekiURL/v1',
-  socketUrl: 'https://nekiURL',
+  apiUrl: 'http://localhost:8080/v1',
+  socketUrl: 'http://localhost:8080',
+  // TO-DO change for production ->> https://zmajkotrek.si
   production: true,
 };

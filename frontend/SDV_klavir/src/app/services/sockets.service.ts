@@ -11,7 +11,8 @@ export class SocketsService {
   private socket: Socket;
 
   constructor() {
-    this.socket = io(environment.socketUrl)
+    console.log(environment.socketUrl);
+    this.socket = io(environment.socketUrl);
   }
 
   public newReservation(data: string): void {

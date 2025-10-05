@@ -8,6 +8,7 @@ import { ReservationType } from '../../classes/reservation-type';
 import { DaysService } from '../../services/days.service';
 import { SocketsService } from '../../services/sockets.service';
 import { LivePresenceInfo } from '../../classes/livePresenceInfo';
+import { AlertService } from '../../services/alert.service';
 
 const LS_KEY = "name"
 
@@ -19,7 +20,11 @@ const LS_KEY = "name"
   styleUrl: './dayslot.component.css'
 })
 export class DayslotComponent implements OnInit, OnDestroy {
-  constructor(private readonly dayService: DaysService, private readonly socketsService: SocketsService) {}
+  constructor(
+    private readonly dayService: DaysService, 
+    private readonly socketsService: SocketsService,
+    private readonly alertService: AlertService
+  ) {}
   @Input() dayNumber!: number;
   @ViewChild('modal') modal!: ElementRef;
 
@@ -92,14 +97,20 @@ export class DayslotComponent implements OnInit, OnDestroy {
   }
 
   protected getAllTimeslots(): void {
-    this.dayService.getDay(this.dayNumber).subscribe(day => {
-      this.day = day;
+    this.dayService.getDay(this.dayNumber).subscribe({
+      next: day => {
+        this.day = day;
+      },
+      error: () => {
+        console.log('error getting day');
+      }
     });
+
+    
     this.selectedTimeslots = [];
   }
 
   protected async reserveTimeslots() {
-    // TO-DO: dodaj body
     await Promise.all<Day>(
       Array.from(this.selectedTimeslots).map(
         (ts) =>
@@ -109,14 +120,19 @@ export class DayslotComponent implements OnInit, OnDestroy {
               ts.timeslotNo,
               this.reservationType,
               this.reservedBy
-            ).subscribe((res) => {
-              resolve(res);
+            ).subscribe({
+              next: (res) => {
+                resolve(res);
+              },
+              error: () => {
+                console.log('error reserving timeslots');
+              }
             })
           })
       )
     )
     
-    console.log("Timeslots reserved");
+    this.showAlert("Uspešno ste rezervirali termine.")
     
     if (localStorage.getItem(LS_KEY) !== this.reservedBy) {
       localStorage.setItem(LS_KEY, this.reservedBy);
@@ -131,13 +147,18 @@ export class DayslotComponent implements OnInit, OnDestroy {
       Array.from(this.selectedTimeslots).map(
         (ts) =>
           new Promise((resolve) => {
-            this.dayService.unreserveTimeslots(this.dayNumber, ts.timeslotNo).subscribe((res) => {
-              resolve(res);
+            this.dayService.unreserveTimeslots(this.dayNumber, ts.timeslotNo).subscribe({
+              next: (res) => {
+                resolve(res);
+              },
+              error: () => {
+                console.log('error reserving timeslots');
+              }
             })
           })
       )
     )
-    console.log("Timeslots unreserved");
+    this.showAlert("Uspešno ste sprostili termine.")
     this.getAllTimeslots();
     this.broadcastNewReservation(`unreserved by ${this.reservedBy}`);
   }
@@ -205,5 +226,9 @@ export class DayslotComponent implements OnInit, OnDestroy {
           .filter((n) => now - n[1] < 45000)
       )
     }
+  }
+
+  protected showAlert(message: string) {
+    this.alertService.setAlert(message);
   }
 }

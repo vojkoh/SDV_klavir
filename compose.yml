@@ -9,32 +9,35 @@ services:
       - mongodb_data:/data/db
     ports:
       - '27017:27017'
-  # backend:
-  #   build:
-  #     dockerfile: './backend/Dockerfile'
-  #   restart: always
-  #   ports:
-  #     - '3000:3000'
-    # environment:
-    #   - NODE_ENV=production
-    #   - PORT=3000
-    #   - SERVICE_NAME=neznan-app/backend
-    #   - JWT_SECRET=secret
-    #   - DATABASE_URL=mongodb://root:nullSkillz42@db:27017
-    #   - EXTERNAL_URL=http://localhost:3000
-    #   - FRONTEND_URL=http://localhost:8080
-    #   - LOG_LEVEL=silly
-    #   - API_PREFIX=/v1
-    #   - TZ=Europe/Ljubljana
-    # depends_on:
-    #   - db
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.local
-  #   restart: always
-  #   ports:
-  #     - '8080:80'
+
+  backend:
+    container_name: sdv-klavir-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+        - NODE_ENV=development
+        - SERVICE_NAME=sdv_klavir/backend
+        - JWT_SECRET=secret
+        - PORT=3000
+        - DATABASE_URL=mongodb://root:nullSkillz42@db:27017
+        - EXTERNAL_URL=http://backend:3000
+        - FRONTEND_URL=http://localhost:8080
+        - API_PREFIX=/v1
+        - TZ=Europe/Ljubljana
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+  nginx:
+    container_name: sdv-klavir-nginx
+    build:
+      context: ./frontend/SDV_klavir
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '8080:80'
 
 volumes:
   mongodb_data:

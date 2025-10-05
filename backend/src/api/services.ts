@@ -19,7 +19,6 @@ const createFreshDay = (dayOfTheWeek: number): Day => {
     dayOfTheWeek: dayOfTheWeek,
     timeslots: [...Array(numOfTimeslotsPerDay)].map((_, i) => (
       {
-        // TO-DO: add start time!
         timeslotNo: i,
         start: `${7 + i}:00`,
         reservationType: ReservationType.Unreserved,
