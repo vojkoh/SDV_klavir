@@ -16,13 +16,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-        - NODE_ENV=development
+        - NODE_ENV=production
         - SERVICE_NAME=sdv_klavir/backend
         - JWT_SECRET=secret
         - PORT=3000
         - DATABASE_URL=mongodb://root:nullSkillz42@db:27017
-        - EXTERNAL_URL=http://zmajkotrek.si/v1
-        - FRONTEND_URL=http://zmajkotrek.si
+        - EXTERNAL_URL=https://zmajkotrek.si/v1
+        - FRONTEND_URL=https://zmajkotrek.si
         - API_PREFIX=/v1
         - TZ=Europe/Ljubljana
     restart: always

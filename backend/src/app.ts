@@ -12,8 +12,6 @@ import { Environment } from './config';
 
 const app = express();
 
-app.use(cors());
-
 if (config.env === Environment.Production) {
   app.use(cors({ origin: config.frontendURL }));
   app.use(
@@ -22,6 +20,8 @@ if (config.env === Environment.Production) {
       contentSecurityPolicy: false,
     })
   );
+} else {
+  app.use(cors());
 }
 
 app.use(express.json({ limit: '1mb' }));

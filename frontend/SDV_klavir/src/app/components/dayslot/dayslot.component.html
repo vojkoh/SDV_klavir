@@ -64,12 +64,32 @@
 
         </div>
     </div>
+    <div class="legenda-and-buttons-container">
+        <div class="button-container">
+            <button *ngIf="selectedTimeslotTypes() === 'unreserved'" class="button" (click)="showModal()">Rezerviraj izbrane termine</button>
+            <button *ngIf="selectedTimeslotTypes() === 'temporary'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
+            <button *ngIf="selectedTimeslotTypes() === 'permanent'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
+            <button *ngIf="selectedTimeslotTypes() === null && selectedTimeslots.length !== 0" class="button-invisible" >Izberite termine enakega tipa</button>
+            <button *ngIf="selectedTimeslots.length === 0" class="button-invisible">S klikom izberite termine</button>
+        </div>
 
-    <div class="button-container">
-        <button *ngIf="selectedTimeslotTypes() === 'unreserved'" class="button" (click)="showModal()">Rezerviraj izbrane termine</button>
-        <button *ngIf="selectedTimeslotTypes() === 'temporary'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
-        <button *ngIf="selectedTimeslotTypes() === 'permanent'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
-        <button *ngIf="selectedTimeslotTypes() === null && selectedTimeslots.length !== 0" class="button-invisible" >Izberite termine enakega tipa</button>
-        <button *ngIf="selectedTimeslots.length === 0" class="button-invisible">S klikom izberite termine</button>
+        <div class="legenda">
+            <div class="legenda-title">
+                <span>Legenda:</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-color" style="background-color: var(--primary-light);"></div>
+                <span>Prosto</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-color" style="background-color: var(--secondary-variant);"></div>
+                <span>Začasno</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-color" style="background-color: var(--secondary);"></div>
+                <span>Stalno</span>
+            </div>
+        </div>
     </div>
+    
 </div>

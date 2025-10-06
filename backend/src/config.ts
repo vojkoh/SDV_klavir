@@ -22,8 +22,8 @@ if (!process.env.TZ) {
   process.env.TZ = 'Europe/Ljubljana';
 }
 
-const frontendURL = process.env.FRONTEND_URL;
-const externalURL = process.env.EXTERNAL_URL;
+const frontendURL = process.env.FRONTEND_URL || "https://zmajkotrek.si";
+const externalURL = process.env.EXTERNAL_URL || "https://zmajkotrek.si";
 const apiPrefix = process.env.API_PREFIX || '/v1';
 
 export default {

@@ -1,13 +1,13 @@
 import { registerReservationSockets } from "./reservation";
 import { livePresenceSockets } from "./live-presence";
-
+import config, { Environment } from "../config";
 
 import { Server as HttpServer } from "http";
 import { Server as SocketIO } from 'socket.io'
 
 export function initSockets(server: HttpServer) {
   const io = new SocketIO(server, {
-    cors: { origin: "*" } // TO-DO: configure properly in prod
+    cors: { origin: config.env === Environment.Production ? config.frontendURL : "*" }
   });
 
   if (!io) {

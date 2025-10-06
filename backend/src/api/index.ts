@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import Services from './services';
-import { time } from 'console';
 
 const router = Router();
 
@@ -35,6 +34,11 @@ router.post('/unreserve/:dayId/:timeslotId', async (req, res) => {
         res.status(404);
     }
     res.json(timeslot);
+});
+
+router.delete('/days/:dayId', async (req, res) => {
+    const day = await Services.deleteDay(parseInt(req.params.dayId, 10));
+    res.json(day);
 });
 
 export default router;

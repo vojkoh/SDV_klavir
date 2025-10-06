@@ -4,8 +4,9 @@ import { ReserveBodyDto } from './dtos';
 import { ResolveRawPathType } from 'mongoose';
 import { CustomError } from './customError';
 
-const numOfTimeslotsPerDay: number = 14;
+const numOfTimeslotsPerDay: number = 15;
 
+// Returns the date of the next occurrence of the specified day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 const getDateOfNext = (dayOfTheWeek: number): Date => {
   const today = new Date();
   const daysUntilNext = (dayOfTheWeek - getDay(today) + 7) % 7;
@@ -69,6 +70,19 @@ export default class Services {
     }
 
     return day;
+  }
+
+  static async deleteDay(dayOfTheWeek: number) {
+    if (dayOfTheWeek > 7 || dayOfTheWeek < 0) {
+      throw new CustomError("Dan s podano številko ne obstaja.", 404);
+    }
+
+    try {
+      const deletedDay = await Day.findOneAndDelete({ dayOfTheWeek });
+      return deletedDay;
+    } catch (err) {
+      throw new CustomError('Podatkov za dan ni bilo mogoče pridobiti', 400);
+    }
   }
 
   static async reserveTimeslot(dayOfTheWeek: number, timeslotId: number, body: ReserveBodyDto) {

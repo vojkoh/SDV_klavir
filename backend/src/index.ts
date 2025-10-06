@@ -36,6 +36,7 @@ async function gracefulShutdown(exitCode: number = 0) {
 
 async function mongooseInit() {
   try {
+    console.log('Connecting to MongoDB ...', config.database.url);
     const mongooseClient = await mongoose.connect(config.database.url);
     console.log('Connected to MongoDB.', 'mongoose.init.success');
 
