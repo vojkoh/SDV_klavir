@@ -34,7 +34,7 @@ services:
   nginx:
     container_name: sdv-klavir-nginx
     volumes:
-      - ./zmajkotrek.si:/etc/letsencrypt/live/zmajkotrek.si
+      - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/SDV_klavir/nginx.conf:/etc/nginx/nginx.conf
     build:
       context: ./frontend/SDV_klavir
