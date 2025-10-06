@@ -49,7 +49,6 @@ export default class Services {
     }
 
     const dayDiff = differenceInCalendarDays(day.date, new Date());
-    console.log(`Day difference: ${dayDiff}`);
 
     if (dayDiff < 0) {
       // If the day is in the past, clean all temporary reservations

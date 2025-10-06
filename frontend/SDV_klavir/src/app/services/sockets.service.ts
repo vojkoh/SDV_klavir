@@ -11,7 +11,6 @@ export class SocketsService {
   private socket: Socket;
 
   constructor() {
-    console.log(environment.socketUrl);
     this.socket = io(environment.socketUrl);
   }
 

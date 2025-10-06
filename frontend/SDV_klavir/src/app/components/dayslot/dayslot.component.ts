@@ -45,22 +45,18 @@ export class DayslotComponent implements OnInit, OnDestroy {
     }
 
     this.socketsService.onNewReservation((message) => {
-      // console.log(message);
       this.getAllTimeslots();
     });
 
     this.socketsService.onNewTimeslotSelection((data: LivePresenceInfo) => {
-      // console.log(`SELECTED, ${data}`);
       const { name, dayNo, timeslotNo } = data
       if (dayNo === this.dayNumber) {
         this.livePresenceMap[timeslotNo] = {...this.livePresenceMap[timeslotNo] || {}}; // for rerendering
         this.livePresenceMap[timeslotNo][name] = Date.now();
       }
-      console.log(this.livePresenceMap);
     });
 
     this.socketsService.onNewTimeslotUnselection((data: LivePresenceInfo) => {
-      // console.log(`UNSELECTED, ${data}`);
       const { name, dayNo, timeslotNo } = data
       if (dayNo === this.dayNumber && this.livePresenceMap[timeslotNo]) {
         // filtering a dict :)
@@ -70,11 +66,9 @@ export class DayslotComponent implements OnInit, OnDestroy {
           .filter((n) => n[0] !== name)
         )
       }
-      // console.log(this.livePresenceMap);
     });
 
     this.cleanupInterval = setInterval(() => {
-      // console.log("Timeslots cleaned UP");
       this.cleanUpLivePresence()
     }, 10000)
   }
@@ -84,7 +78,6 @@ export class DayslotComponent implements OnInit, OnDestroy {
   }
 
   ngOnChanges(): void {
-    console.log("changes detected");
     this.livePresenceMap = {};
     this.selectedTimeslots = [];
     this.getAllTimeslots();
@@ -164,13 +157,11 @@ export class DayslotComponent implements OnInit, OnDestroy {
   }
 
   protected selectTimeslot(timeslot: Timeslot): void {
-    console.log("Timeslot selected");
     this.selectedTimeslots.push(timeslot);
     // this.broadcastNewSelection(true, timeslot.timeslotNo);
   }
  
   protected unselectTimeslot(timeslot: Timeslot): void {
-    console.log("Timeslot unselected");
     this.selectedTimeslots = this.selectedTimeslots.filter(ts => ts._id != timeslot._id);
     // this.broadcastNewSelection(false, timeslot.timeslotNo);
   }
@@ -201,7 +192,6 @@ export class DayslotComponent implements OnInit, OnDestroy {
   }
 
   protected dayNameFromNumber(dayNumber: number): string {
-    console.log(dayNumber);
     return this.days2Names.find(day => day.dayOfTheWeek == dayNumber)?.name || "Unknown day";
   }
 

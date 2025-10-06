@@ -6,5 +6,6 @@
 # TO-DO: additional features (unreserving permanent)
 # TO-DO: CI-CD ??
 # TO-DO: styling, contrasts, legend
+# TO-DO: icon
 
 

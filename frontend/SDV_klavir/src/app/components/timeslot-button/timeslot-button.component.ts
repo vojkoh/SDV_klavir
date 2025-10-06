@@ -32,7 +32,6 @@ export class TimeslotButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("hartbeats stopped - DESTROY");
     if (this.isSelected) {
       this.broadcastNewSelection(false, this.timeslot.timeslotNo);
     }
@@ -63,12 +62,10 @@ export class TimeslotButtonComponent implements OnInit, OnDestroy {
     if (isSelection) {
       this.socketsService.timeslotSelected(data);
       this.livePresenceTimer = setInterval(() => {
-        console.log("heartbeat sent");
         this.socketsService.timeslotSelected(data);
       }, 15000);
     } else {
       this.socketsService.timeslotUnselected(data);
-      console.log("hartbeats stopped");
       clearInterval(this.livePresenceTimer);
     }
   }
