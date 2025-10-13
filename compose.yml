@@ -34,6 +34,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/SDV_klavir/nginx.conf:/etc/nginx/nginx.conf
+      - /var/www/certbot:/var/www/certbot
     image: banana4242/sdv_klavir_frontend
     restart: always
     ports:
