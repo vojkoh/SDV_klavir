@@ -12,7 +12,7 @@
                     <span class="close-button" (click)="hideModal()">&times;</span>
                 </div>
                 <div class="modal-content">
-                    <div>
+                    <div class="input-wrapper">
                         <label for="ime">Kdo rezervira?</label>
                         <input
                             [(ngModel)]="reservedBy"
@@ -26,14 +26,16 @@
                     <div class="modal-buttons">
                         <div>
                             <button 
-                                [ngClass]="reservationType == ReservationType.Temporary ? 'button' : 'button-invisible'" 
+                                class="button-left"
+                                [ngClass]="reservationType == ReservationType.Temporary ? 'active' : 'not-active'" 
                                 (click)="changeReservationType(ReservationType.Temporary)">
                                 Začasno
                             </button>
                         </div>
                         <div>
-                            <button 
-                                [ngClass]="reservationType == ReservationType.Permanent ? 'button' : 'button-invisible'"
+                            <button
+                                class="button-right"
+                                [ngClass]="reservationType == ReservationType.Permanent ? 'active' : 'not-active'"
                                 (click)="changeReservationType(ReservationType.Permanent)">
                                 Stalno
                             </button>
@@ -43,7 +45,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="button" (click)="reserveTimeslots()">Rezerviraj izbrane termine</button>
+                    <button class="button" (click)="reserveTimeslots()">Rezerviraj</button>
                 </div>
             </div>
         </div>
@@ -66,11 +68,11 @@
     </div>
     <div class="legenda-and-buttons-container">
         <div class="button-container">
-            <button *ngIf="selectedTimeslotTypes() === 'unreserved'" class="button" (click)="showModal()">Rezerviraj izbrane termine</button>
-            <button *ngIf="selectedTimeslotTypes() === 'temporary'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
-            <button *ngIf="selectedTimeslotTypes() === 'permanent'" class="button" (click)="unreserveTimeslots()">Sprosti izbrane termine</button>
+            <button *ngIf="selectedTimeslotTypes() === 'unreserved'" class="button" (click)="showModal()">Rezerviraj</button>
+            <button *ngIf="selectedTimeslotTypes() === 'temporary'" class="button" (click)="unreserveTimeslots()">Sprosti</button>
+            <button *ngIf="selectedTimeslotTypes() === 'permanent'" class="button" (click)="unreserveTimeslots()">Sprosti</button>
             <button *ngIf="selectedTimeslotTypes() === null && selectedTimeslots.length !== 0" class="button-invisible" >Izberite termine enakega tipa</button>
-            <button *ngIf="selectedTimeslots.length === 0" class="button-invisible">S klikom izberite termine</button>
+            <button *ngIf="selectedTimeslots.length === 0" class="button-invisible">Izberite termine</button>
         </div>
 
         <div class="legenda">

@@ -1,10 +1,9 @@
 import Day, { ReservationType, Timeslot } from './dayModel';
 import { addDays, differenceInCalendarDays, getDay } from 'date-fns';
 import { ReserveBodyDto } from './dtos';
-import { ResolveRawPathType } from 'mongoose';
 import { CustomError } from './customError';
 
-const numOfTimeslotsPerDay: number = 15;
+const numOfTimeslotsPerDay: number = 30;
 
 // Returns the date of the next occurrence of the specified day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 const getDateOfNext = (dayOfTheWeek: number): Date => {
@@ -21,7 +20,7 @@ const createFreshDay = (dayOfTheWeek: number): Day => {
     timeslots: [...Array(numOfTimeslotsPerDay)].map((_, i) => (
       {
         timeslotNo: i,
-        start: `${7 + i}:00`,
+        start: `${7 + Math.floor(i/2)}:${i % 2 === 0 ? '00' : '30'}`,
         reservationType: ReservationType.Unreserved,
         reservedBy: 'prosto'
       } as Timeslot
@@ -120,7 +119,7 @@ export default class Services {
     const filter = { 'dayOfTheWeek': dayOfTheWeek, 'timeslots.timeslotNo': timeslotId };
     const update = { '$set': {
        'timeslots.$.reservationType': ReservationType.Unreserved,
-       'timeslots.$.reservedBy': 'nobody'
+       'timeslots.$.reservedBy': 'prosto'
     }};
     const options = {new: true};
 
