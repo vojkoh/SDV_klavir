@@ -36,8 +36,7 @@ services:
     image: banana4242/sdv_klavir_frontend
     restart: always
     ports:
-      - '80:80'
-      - '443:443'
+      - '8080:80'
 
 volumes:
   mongodb_data:
