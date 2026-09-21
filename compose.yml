@@ -17,8 +17,8 @@ services:
         - JWT_SECRET=secret
         - PORT=3000
         - DATABASE_URL=mongodb://root:nullSkillz42@db:27017
-        - EXTERNAL_URL=https://zmajkotrek.si/v1
-        - FRONTEND_URL=https://zmajkotrek.si
+        - EXTERNAL_URL=https://klavir.dendroscopos.si/v1
+        - FRONTEND_URL=https://klavir.dendroscopos.si
         - API_PREFIX=/v1
         - TZ=Europe/Ljubljana
     restart: always

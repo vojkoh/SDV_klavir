@@ -15,18 +15,18 @@
 
 #### First time
 
-First you need to generate certificates for SSL. Make sure domain zmajkotrek.si is pointing to your remote machine.
+First you need to generate certificates for SSL. Make sure domain klavir.dendroscopos.si is pointing to your remote machine.
 1. clone this project to remote machine
 2. comment out the first server block of [nginx.conf](/frontend/SDV_klavir/nginx.conf)
 3. (create directory `/var/www/certbot`)... idunno if needed, won't hurt
 4. `docker compose up -d`
 5. install `certbot`, instructions [here](https://certbot.eff.org/instructions?ws=other&os=snap)
-6. `docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d zmajkotrek.si`
-7. If successfull: `docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d zmajkotrek.si`
+6. `docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d klavir.dendroscopos.si`
+7. If successfull: `docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d klavir.dendroscopos.si`
 8. Uncomment first server block for nginx.
 9. `docker compose restart`
 
-That's actually it. Your app should be running on [zmajkotrek.si](https://zmajkotrek.si)
+That's actually it. Your app should be running on [klavir.dendroscopos.si](https://klavir.dendroscopos.si)
 
 #### Fixes
 
