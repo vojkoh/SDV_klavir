@@ -6,9 +6,10 @@ services:
       resources:
         limits:
           memory: 320M
+          cpus: 0.25
         reservations:
           memory: 192M
-    cpus: 0.25
+          cpus: 0.15
     command: ["--wiredTigerCacheSizeGB", "0.25"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -35,9 +36,10 @@ services:
       resources:
         limits:
           memory: 192M
+          cpus: 0.20
         reservations:
           memory: 128M
-    cpus: 0.25
+          cpus: 0.10
     ports:
       - '3000:3000'
     depends_on:
@@ -55,9 +57,10 @@ services:
       resources:
         limits:
           memory: 64M
+          cpus: 0.15
         reservations:
           memory: 32M
-    cpus: 0.15
+          cpus: 0.7
     ports:
       - '8080:80'
 
