@@ -2,6 +2,14 @@ services:
   db:
     image: mongo:8.0.4-rc0
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+        reservations:
+          memory: 192M
+    cpus: 0.25
+    command: ["--wiredTigerCacheSizeGB", "0.25"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: nullSkillz42
@@ -21,7 +29,15 @@ services:
         - FRONTEND_URL=https://klavir.dendroscopos.si
         - API_PREFIX=/v1
         - TZ=Europe/Ljubljana
+        - NODE_OPTIONS=--max-old-space-size=96     # keep V8 heap below the container limit
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 192M
+        reservations:
+          memory: 128M
+    cpus: 0.25
     ports:
       - '3000:3000'
     depends_on:
@@ -35,6 +51,13 @@ services:
       - /var/www/certbot/:/var/www/certbot/
     image: banana4242/sdv_klavir_frontend
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 32M
+    cpus: 0.15
     ports:
       - '8080:80'
 
